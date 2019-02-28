@@ -19,7 +19,7 @@
 * "New Game" - clears the board.
 * "Unique" - removes duplicates from the table
 * "Generate" - generates n games and adds them into the table. Games can be venerated as played between random AIs or random AI and Neural Netowrk. Generating games vs Neural Netowrk requires training NN first. Training as its source uses only won games.
-* "NN recognize game states" - teaches Neural Netowork how to guess if game was won, lost or otherwise based on results generated in the table. Then the results are presented in the last column (for both training and test set).
+* "NN recognize game states" - teaches Neural Network how to guess if game was won, lost or otherwise based on results generated in the table. Then the results are presented in the last column (for both training and test set).
 * "Only incorrectly classified" - removes correct classifiactions from the table.
 * "NN - learn to play with data" - teaches neural netowrk how to win games.
 * "NN hint" - shows on the board optimal move for the curent player.
