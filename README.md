@@ -31,7 +31,7 @@ Be aware that your results largely depend on the quality of your training sets.
 ### Known issues:
 * This software currently tries to display game states on the board when generating, this may sometimes cause little responsivenes of the user interface especially when generating large sets.
 * Despite async calls there is no feedback during the process of training Neural Netowrk, so for large sets or many neurons you won't know how long it will take.
-* Communication between game state model and booard view is an aboslute MESS, I know that I didn't have much time to code it and I didn't go back to this project ever since. So one may ask why did I publish this? Because some people requested it.
+* Communication between game state model and board view is an aboslute MESS - I know that I just didn't have much time to code it and I didn't go back to this project ever since. So one may ask why did I publish this? Because some people requested it.
 
 
 
