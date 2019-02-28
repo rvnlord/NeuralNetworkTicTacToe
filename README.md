@@ -2,7 +2,7 @@
 
 ### Download:
 
-[![Download](https://img.shields.io/badge/download-NeuralNetworkTicTacToe--v1.0-blue.svg)](https://github.com/rvnlord/neuralNetowrkTicTacToe/releases/download/v1.0/TicTacToe.exe)
+[![Download](https://img.shields.io/badge/download-NeuralNetworkTicTacToe--v1.0-blue.svg)](https://github.com/rvnlord/NeuralNetworkTicTacToe/releases/download/v1.0/TipTacToe.exe)
 ![Calculations](https://img.shields.io/badge/SHA--256-1DD49CED74D8C2E48E1B49F13DCEF4E2985F0C6EA7938FDFA942CA579F7967A7-darkgreen.svg)
 
    ![Interface](/Images/2019-02-28_141837.png?raw=true)
