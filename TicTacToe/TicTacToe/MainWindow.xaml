@@ -1,0 +1,144 @@
+﻿<mah:MetroWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    Icon="./Resources/Icons/Icon.png"
+    x:Class="TipTacToe.MainWindow"
+    mc:Ignorable="d"
+    Title="Neural Network TicTacToe" 
+    Height="1500" Width="2000" 
+    WindowStartupLocation="CenterScreen" 
+    Padding="10" Margin="0" 
+    Background="#FF1E1E1E" 
+    SizeToContent="WidthAndHeight" 
+    ResizeMode="CanMinimize" 
+    FontSize="14.667" 
+    GlowBrush="{DynamicResource AccentColorBrush}" 
+    Closing="MainWindow_Closing" 
+    SnapsToDevicePixels="True"
+    mah:ControlsHelper.ContentCharacterCasing="Normal">
+
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <Button x:Name="btnMinimizeToTray" Content="{iconPacks:PackIconModern RefreshCounterclockwiseDown}" ToolTip="Tray" Click="btnMinimizeToTray_Click" />
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+
+    <Grid x:Name="gridMain" Background="Transparent" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" SnapsToDevicePixels="True">
+        <Grid x:Name="gridDataContainer" Background="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+            <Border x:Name="bdBoard" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="Blue" BorderThickness="2" Height="184" Width="184" Margin="0,0,0,0" SnapsToDevicePixels="True" >
+                <Canvas x:Name="cvBoard" 
+                  Height="{Binding ElementName=bdBoard, Path=Height, Converter={StaticResource MathConverter}, ConverterParameter=(@VALUE-4)}" 
+                  Width="{Binding ElementName=bdBoard, Path=Width, Converter={StaticResource MathConverter}, ConverterParameter=(@VALUE-4)}" 
+                  RenderOptions.BitmapScalingMode="Fant" RenderOptions.EdgeMode="Aliased" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" SnapsToDevicePixels="True" MouseMove="cvBoard_MouseMove" MouseLeftButtonDown="cvBoard_MouseLeftButtonDown" MouseLeave="cvBoard_MouseLeave"/>
+            </Border>
+            <ComboBox x:Name="ddlMode" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="205" Margin="495,35,0,0" />
+            <ComboBox x:Name="ddlLoadingMode" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="205" Margin="495,0,0,0" />
+            <Button x:Name="btnSave" Content="Save" Style="{DynamicResource SquareButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="100" Click="btnSave_Click" TabIndex="1" Margin="600,70,0,0" mah:ControlsHelper.ContentCharacterCasing="Normal" FontSize="14"/>
+            <Button x:Name="btnAdd" Content="Add" Style="{DynamicResource AccentedSquareButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="100" Click="btnAdd_Click" TabIndex="1" Margin="495,70,0,0" mah:ControlsHelper.ContentCharacterCasing="Normal" FontSize="14"/>
+            <Button x:Name="btnDelete" Content="Remove" Style="{DynamicResource SquareButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="100" Click="btnDelete_Click" TabIndex="1" Margin="495,104,0,0" mah:ControlsHelper.ContentCharacterCasing="Normal" FontSize="14"/>
+            <Button x:Name="btnNewGame" Content="New Game" Style="{DynamicResource SquareButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="100" Click="btnNewGame_Click" TabIndex="1" Margin="600,104,0,0" mah:ControlsHelper.ContentCharacterCasing="Normal" FontSize="14"/>
+            <Button x:Name="btnClear" Content="Clear" Style="{DynamicResource SquareButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="100" Click="btnClear_Click" TabIndex="1" Margin="495,139,0,0" mah:ControlsHelper.ContentCharacterCasing="Normal" FontSize="14"/>
+            <Button x:Name="btnPreserveUnique" Content="Unique" Style="{DynamicResource SquareButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="100" TabIndex="1" Margin="600,139,0,0" mah:ControlsHelper.ContentCharacterCasing="Normal" FontSize="14" Click="btnPreserveUnique_Click"/>
+            <Button x:Name="btnGenerateGames" Content="Generate" Style="{DynamicResource AccentedSquareButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="100" Click="btnGenerateGames_Click" TabIndex="1" Margin="495,174,0,0" mah:ControlsHelper.ContentCharacterCasing="Normal" FontSize="14"/>
+            <mah:NumericUpDown x:Name="numGames" HorizontalAlignment="Left" Margin="600,174,0,0" VerticalAlignment="Top" Width="155" Height="30" HasDecimals="False" Minimum="0" Maximum="100000" TabIndex="0" Value="10" FontSize="14.667"/>
+            <ComboBox x:Name="ddlGeneratedGamesType" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="140" Margin="760,173,0,0" />
+
+            <Button x:Name="btnNNRecognizeGameStates" Content="NN - recognize game states" Style="{DynamicResource AccentedSquareButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="195" Click="btnNNRecognizeGameStates_Click" TabIndex="1" Margin="705,0,0,0" mah:ControlsHelper.ContentCharacterCasing="Normal" FontSize="14"/>
+            <Button x:Name="btnKeepOnlyWronglyClassified" Content="Only incorrectly classified" Style="{DynamicResource SquareButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="195" Click="btnKeepOnlyIncorrectlyClassified_Click" TabIndex="1" Margin="705,35,0,0" mah:ControlsHelper.ContentCharacterCasing="Normal" FontSize="14"/>
+            <Button x:Name="btnNNLearnHowToPlay" Content="NN - learn to play with data" Style="{DynamicResource SquareButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="195" Click="btnNNLearnHowToPlay_Click" TabIndex="1" Margin="705,70,0,0" mah:ControlsHelper.ContentCharacterCasing="Normal" FontSize="14"/>
+            <Button x:Name="btnNNHint" Content="NN - hint" Style="{DynamicResource AccentedSquareButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="195" Click="btnNNHint_Click" TabIndex="1" Margin="705,105,0,0" mah:ControlsHelper.ContentCharacterCasing="Normal" FontSize="14"/>
+
+            <Label x:Name="lblNumHiddenNeurons" Content="HIdden neurons:" HorizontalAlignment="Left" Margin="905,0,0,0" VerticalAlignment="Top" Height="30" VerticalContentAlignment="Center" Width="200"/>
+            <mah:NumericUpDown x:Name="numHiddenNeurons" HorizontalAlignment="Left" Margin="1110,0,-0.038,0" VerticalAlignment="Top" Width="100" Height="30" HasDecimals="False" Minimum="0" Maximum="1000" TabIndex="0" Value="18" FontSize="14.667"/>
+
+            <Label x:Name="lblPercTrainSet" Content="Training set:" HorizontalAlignment="Left" Margin="905,35,0,0" VerticalAlignment="Top" Height="30" VerticalContentAlignment="Center" Width="200"/>
+            <mah:NumericUpDown x:Name="numPercTrainSet" HorizontalAlignment="Left" Margin="1110,34,-0.038,0" VerticalAlignment="Top" Width="100" Height="30" HasDecimals="False" Minimum="0" Maximum="100" TabIndex="0" Value="80" FontSize="14.667" StringFormat="{}{0}%" />
+
+            <Label x:Name="lblPercTestSet" Content="Test set:" HorizontalAlignment="Left" Margin="905,70,0,0" VerticalAlignment="Top" Height="30" VerticalContentAlignment="Center" Width="200"/>
+            <mah:NumericUpDown x:Name="numPercTestSet" HorizontalAlignment="Left" Margin="1110,70,-0.038,0" VerticalAlignment="Top" Width="100" Height="30" HasDecimals="False" Minimum="0" Maximum="100" TabIndex="0" Value="20" FontSize="14.667" StringFormat="{}{0}%" />
+
+            <Label x:Name="lblMaxEpochs" Content="Maximum number of epochs:" HorizontalAlignment="Left" Margin="905,105,0,0" VerticalAlignment="Top" Height="30" VerticalContentAlignment="Center" Width="200"/>
+            <mah:NumericUpDown x:Name="numMaxEpochs" HorizontalAlignment="Left" Margin="1110,105,0,0" VerticalAlignment="Top" Width="100" Height="30" HasDecimals="False" Minimum="0" Maximum="10000" TabIndex="0" Value="2000" FontSize="14.667" />
+
+            <Label x:Name="lblLearnRate" Content="Leaning rate:" HorizontalAlignment="Left" Margin="905,140,0,0" VerticalAlignment="Top" Height="30" VerticalContentAlignment="Center" Width="200"/>
+            <mah:NumericUpDown x:Name="numLearnRate" HorizontalAlignment="Left" Margin="1110,140,0,0" VerticalAlignment="Top" Width="100" Height="30" HasDecimals="True" Minimum="0.01" Maximum="1" TabIndex="0" Value="0.05" FontSize="14.667" />
+
+            <Label x:Name="lblMomentum" Content="Step size:" HorizontalAlignment="Left" Margin="905,175,0,0" VerticalAlignment="Top" Height="30" VerticalContentAlignment="Center" Width="200"/>
+            <mah:NumericUpDown x:Name="numMomentum" HorizontalAlignment="Left" Margin="1110,175,0,0" VerticalAlignment="Top" Width="100" Height="30" HasDecimals="True" Minimum="0.01" Maximum="1" TabIndex="0" Value="0.01" FontSize="14.667" />
+
+            <Label x:Name="lblWeightDecay" Content="Weight decay:" HorizontalAlignment="Left" Margin="905,210,0,0" VerticalAlignment="Top" Height="30" VerticalContentAlignment="Center" Width="200"/>
+            <mah:NumericUpDown x:Name="numWeightDecay" HorizontalAlignment="Left" Margin="1110,210,0,0" VerticalAlignment="Top" Width="100" Height="30" HasDecimals="True" Minimum="0.0001" Maximum="1" TabIndex="0" Value="0.0001" FontSize="14.667" />
+
+            <Label x:Name="lblInfo" Content="" HorizontalAlignment="Left" Margin="190,110,0,0" VerticalAlignment="Top" Height="109" VerticalContentAlignment="Top" Width="299">
+                <Label.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="TextWrapping" Value="Wrap" />
+                    </Style>
+                </Label.Resources>
+            </Label>
+
+            <mah:Tile x:Name="tlLoad" AllowDrop="True" Style="{StaticResource MainTabTile}" Margin="189,0,0,0" MouseEnter="tlLoad_MouseEnter" MouseLeave="tlLoad_MouseLeave" DragEnter="tlLoadFromFile_DragEnter" Drop="tlLoadFromFile_Drop" PreviewDragOver="tlLoadFromFile_PreviewDragOver" PreviewDrop="tlLoad_PreviewDrop" PreviewDragEnter="tlLoad_PreviewDragEnter">
+                <mah:Tile.ContentTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <iconPacks:PackIconModern Kind="DiskDownload" Style="{StaticResource MainTabIcon}" />
+                            <TextBlock x:Name="tbDropFIle" Text="Drop file here to Load" Style="{StaticResource MainTabTextblock}" />
+                        </Grid>
+                    </DataTemplate>
+                </mah:Tile.ContentTemplate>
+            </mah:Tile>
+            <mah:Tile x:Name="tlSave" Style="{StaticResource MainTabTile}" Margin="190,55,0,0" PreviewMouseDown="tlSaveToFile_MouseDown" MouseEnter="tlSave_MouseEnter" MouseLeave="tlSave_MouseLeave">
+                <mah:Tile.ContentTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <iconPacks:PackIconModern Kind="Save" Style="{StaticResource MainTabIcon}" />
+                            <TextBlock Text="Drag to a folder in order to Save" Style="{StaticResource MainTabTextblock}" />
+                        </Grid>
+                    </DataTemplate>
+                </mah:Tile.ContentTemplate>
+            </mah:Tile>
+            <Label x:Name="lblGameStatus" Content="" HorizontalAlignment="Left" Margin="0,189,0,0" VerticalAlignment="Top" Height="30" VerticalContentAlignment="Center" Width="184"/>
+            <!--<Label x:Name="lblLogarithmBase" Content="Podstawa logarytmu:" HorizontalAlignment="Left" Margin="305,0,0,0" VerticalAlignment="Top" Height="30" Width="150" VerticalContentAlignment="Center"/>-->
+            <!--<mah:NumericUpDown x:Name="numLogarithmBase" HorizontalAlignment="Left" Margin="460,0,0,0" VerticalAlignment="Top" Width="140" Height="30" HasDecimals="False" Minimum="0" Maximum="1000" TabIndex="0" Value="2" FontSize="14.667"/>-->
+
+            <DataGrid x:Name="gvData" CanUserDeleteRows="False" CanUserAddRows="false" CanUserSortColumns="False" SnapsToDevicePixels="True" IsReadOnly="True" HorizontalAlignment="Left" Margin="0,245,0,0" VerticalAlignment="Top" FontSize="14.667" AutoGenerateColumns="False" Width="1210" Height="400" MaxHeight="400" AllowDrop="True" SelectionMode="Extended" BorderThickness="0" Background="Transparent" RowBackground="Transparent" AlternatingRowBackground="Transparent" ColumnHeaderStyle="{StaticResource MyColumnHeader}" SelectionChanged="gvData_SelectionChanged" PreviewKeyDown="gvData_PreviewKeyDown">
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" Header="No" Binding="{Binding Id}" Width="50" CellStyle="{StaticResource MyColumnCell}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="R1C1" Binding="{Binding R1C1}" Width="*" CellStyle="{StaticResource MyColumnCell}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="R1C2" Binding="{Binding R1C2}" Width="*" CellStyle="{StaticResource MyColumnCell}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="R1C3" Binding="{Binding R1C3}" Width="*" CellStyle="{StaticResource MyColumnCell}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="R2C1" Binding="{Binding R2C1}" Width="*" CellStyle="{StaticResource MyColumnCell}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="R2C2" Binding="{Binding R2C2}" Width="*" CellStyle="{StaticResource MyColumnCell}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="R2C3" Binding="{Binding R2C3}" Width="*" CellStyle="{StaticResource MyColumnCell}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="R3C1" Binding="{Binding R3C1}" Width="*" CellStyle="{StaticResource MyColumnCell}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="R3C2" Binding="{Binding R3C2}" Width="*" CellStyle="{StaticResource MyColumnCell}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="R3C3" Binding="{Binding R3C3}" Width="*" CellStyle="{StaticResource MyColumnCell}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="Result" Binding="{Binding ResultString}" Width="150" CellStyle="{StaticResource MyColumnCell}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="NN Result" Binding="{Binding NNResultString}" Width="150" CellStyle="{StaticResource MyColumnCell}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Label x:Name="lblSignature" Content="rvnlord" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,650,0,0" Height="30" VerticalContentAlignment="Center" Foreground="Blue" />
+
+        </Grid>
+    </Grid>
+</mah:MetroWindow>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
