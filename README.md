@@ -9,29 +9,29 @@
 
 ### How to use:
 
-* "Drop file here to Load" - allows user to load valid file with game states directly into the table.
-* "Drag to a folder in order to Save" - allows to save the table as file containing game states.
-* first dropdown - controls if newly added game states will replace states already present or merge with them.
-* second dropdown - controls mode of the gameboard.
-* "Add" - adds the current game state (visible on gameboards) to the table.
-* "Save" - replace game state selected in the table with the one present on the board.
-* "Remove" - deletes selected game state from the table.
+* "Drop file here to Load" - allows user to load a file containing valid game states.
+* "Drag to a folder in order to Save" - allows user to save the table of game states to a file.
+* first dropdown - controls whether newly added game states will replace an existing table or will be merged to it.
+* second dropdown - controls the way user interacts with the game board.
+* "Add" - adds the current (visible on the board) game state to the table.
+* "Save" - places the game state from the board in the selected table record.
+* "Remove" - deletes the selected game state from the table.
 * "New Game" - clears the board.
-* "Unique" - removes duplicates from the table
-* "Generate" - generates n games and adds them into the table. Games can be venerated as played between random AIs or random AI and Neural Netowrk. Generating games vs Neural Netowrk requires training NN first. Training as its source uses only won games.
-* "NN recognize game states" - teaches Neural Network how to guess if game was won, lost or otherwise based on results generated in the table. Then the results are presented in the last column (for both training and test set).
+* "Unique" - removes duplicates from the table.
+* "Generate" - generates 'n' games and adds them into the table. Games can be generated as played between random AIs or random AI and Neural Netowrk. Generating games vs Neural Network requires prior training. Training as a source uses only won games.
+* "NN recognize game states" - teaches the neural network to guess if the game has been won, lost or is in a different state based on the results from the table. Then the results are presented in the last column (for both training and test set).
 * "Only incorrectly classified" - removes correct classifiactions from the table.
-* "NN - learn to play with data" - teaches neural netowrk how to win games.
-* "NN hint" - shows on the board optimal move for the curent player.
-* right section of user interface allows you to control Neural Network parameters (Neural Network in this project uses always single hidden layer appropriately with hyper tangent and soft max activation functions)
+* "NN - learn to play with data" - teaches Neural Network how to win games.
+* "NN hint" - shows the optimal move for the current player on the board.
+* right section of user interface - allows user to control the Neural Network parameters (Neural Network in this project always uses single hidden layer appropriately with hyper tangent and soft max activation functions)
 
-Be aware that your results largely depend on the quality of your training sets. 
+You should be aware that the results depend in a large degree on the quality of the training sets. 
 
 
 ### Known issues:
 * This software currently tries to display game states on the board when generating, this may sometimes cause little responsivenes of the user interface especially when generating large sets.
-* Despite async calls there is no feedback during the process of training Neural Netowrk, so for large sets or many neurons you won't know how long it will take.
-* Communication between game state model and board view is an aboslute MESS - I know that I just didn't have much time to code it and I didn't go back to this project ever since. So one may ask why did I publish this? Because some people requested it.
+* Despite async calls there is no feedback during the process of training Neural Netowrk, so for large sets or many neurons you don't know how much longer it is going to take.
+* Communication between game state model and board view is an aboslute MESS - I know that, I just didn't have much time to code it and I didn't go back to this project ever since. So one may ask why did I publish this at all? Because some people requested it.
 
 
 
