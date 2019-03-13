@@ -18,7 +18,7 @@
 * "Remove" - deletes the selected game state from the table.
 * "New Game" - clears the board.
 * "Unique" - removes duplicates from the table.
-* "Generate" - generates 'n' games and adds them into the table. Games can be generated as played between random AIs or random AI and Neural Netowrk. Generating games vs Neural Network requires prior training. Training as a source uses only won games.
+* "Generate" - generates 'n' games and adds them into the table. Games can be generated as played between random AIs or random AI and Neural Network. Generating games vs Neural Network requires prior training. Training as a source uses only won games.
 * "NN recognize game states" - teaches the neural network to guess if the game has been won, lost or is in a different state based on the results from the table. Then the results are presented in the last column (for both training and test set).
 * "Only incorrectly classified" - removes correct classifiactions from the table.
 * "NN - learn to play with data" - teaches Neural Network how to win games.
