@@ -25,7 +25,7 @@
 * "NN hint" - shows the optimal move for the current player on the board.
 * right section of user interface - allows user to control the Neural Network parameters (Neural Network in this project always uses single hidden layer appropriately with hyper tangent and soft max activation functions)
 
-You should be aware that the results depend in a large degree on the quality of the training sets. 
+You should keep in mind that results are highly dependent on the quality of the datasets.
 
 
 ### Known issues:
