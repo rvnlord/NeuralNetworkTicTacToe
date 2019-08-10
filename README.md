@@ -29,8 +29,8 @@ You should keep in mind that results are highly dependent on the quality of the 
 
 
 ### Known issues:
-* Program currently tries to display game states on the board during generation process, this may cause response lags, especially for large data sets.
-* Despite async calls there is no feedback during the process of training Neural Network, so for large sets or many neurons there may be an impression of hanging on loading screen.
+* Currently the program will try to display game states during the generation process, this can cause response delays, especially for large data sets
+* Despite asynchronous calls there is no feedback during the process of Neural Network training, so for large sets or many neurons there may be an impression of hanging on loading screen.
 * Communication between game state model and board view is an absolute MESS - I know that, I just didn't have much time to code it and I didn't go back to this project ever since. So one may ask why did I publish this at all? Because some people requested it.
 
 
